@@ -94,3 +94,23 @@ img.centrado:hover {
 .whatsapp-icon {
     margin-top: 13px;
 }
+
+.cajonItems{
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top: 50px;
+    margin-left: 22%;
+    margin-right: 22%;
+    margin-bottom: 50px;
+    gap: 4em;
+}
+.Items{
+    margin-top: 5px;
+    background-color: #fdf497;
+    border: 3px solid black;
+    width: 200px;
+    height:250px;
+}
+.cajonItems div:hover{
+    border: 1px solid red;
+}
