@@ -1,0 +1,83 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-sm-4">
+            <center>
+                <h2>Sobre Nosotros</h2>
+            </center>
+            <center>
+                <h5>TagModa</h5>
+
+                <div class="imagenLogo"><img src="{% static 'app/img/Logo.png' %}" class="centrado" alt="..."></div>
+
+                <p>Somos un grupo de personas que buscan estar siempre en la vanguardia en la moda, es por esto que
+                    ofrecemos lo mejor a nivel mundial, conócenos...!!!
+                </p>
+            </center>
+            <br>
+
+            <center>
+                <h3>Visita nuestras redes sociales 😍</h3>
+            </center>
+            <ul class="nav nav-pills flex-column">
+                <center>
+                    <li class="nav-item">
+                        <a class="link-dark" href=""> Facebook <i class="fab fa-facebook-square"
+                                aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="link-dark" href="#">Instagram<i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <a class="link-dark" href="#">
+                    </a>
+                    <li class="nav-item">
+                        <a class="link-dark" href="#">
+                        </a><a class="link-dark" href="">Twitter<i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    </li>
+
+                </center>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <center>
+                <h2>NUESTRO OBJETIVO</h2>
+            </center>
+            <center>
+                <div class="imgQSomos1"><img src="{% static 'app/img/modelo.jpg' %}" class="centrado" alt="reunion"></div>
+            </center>
+            <center>
+                <p>Ser un aliado para el cliente externo e interno, entendiendo sus necesidades y expectativas,
+                    priorizando acciones que solucionen problemas para dar un servicio de talla mundial, para ganar su
+                    confianza y satisfacción total.
+                </p>
+            </center>
+            <br>
+            <center>
+                <h2>COMPROMISO</h2>
+            </center>
+
+            <div class="imgQSomos1"><img src="{% static 'app/img/bodega.jpg' %}" class="centrado" alt="fotografia"></div>
+
+            <center>
+                <p>Nuestro compromiso es ofrecer toda nuestra linea de productos, buscando siempre el beneficio de
+                    nuestros clientes, proveedores, la empresa y las personas que formamos parte de ella, actuando en
+                    todo momento conforme a nuestros valores
+                    , buscando un beneficio mutuo.
+                </p>
+            </center>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
