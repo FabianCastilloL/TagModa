@@ -1,9 +1,9 @@
 body {
-    background: #bdc3c7;
+    background: #768a91;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #468f7f, #bdc3c7);
+    background: -webkit-linear-gradient(to right, #807272, #e19696);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #34689c, #bdc3c7);
+    background: linear-gradient(to right, #b4a4a4, #141852);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -21,6 +21,19 @@ body {
 .container {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.card {
+    margin: 20px 10px;
+}
+
+.card img-top {
+    height: 250px;
+}
+
+.card-body a {
+    color: #285AEB;
+    font-weight: 600;
 }
 
 .centrado {
@@ -41,7 +54,6 @@ img.centrado:hover {
 }
 
 .footerfondo {
-    position: fixed;
     background: #bdc3c7;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #7faca2, #0d262f);
@@ -96,22 +108,6 @@ img.centrado:hover {
     margin-top: 13px;
 }
 
-.cajonItems{
-    display: grid;
-    grid-template-columns:repeat(4,1fr);
-    margin-top: 50px;
-    margin-left: 22%;
-    margin-right: 22%;
-    margin-bottom: 50px;
-    gap: 4em;
-}
-.Items{
-    margin-top: 5px;
-    background-color: #fdf497;
-    border: 3px solid black;
-    width: 200px;
-    height:250px;
-}
-.cajonItems div:hover{
-    border: 1px solid red;
+.textoC {
+    color: black;
 }

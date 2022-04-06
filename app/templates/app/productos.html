@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %} {% load static %} {% block content %}
+<br>
+{%  load humanize  %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        {% for p in productos %}
+        <div class="producto">
+            <div class="card text-center">
+                {% if p.imagen %}
+                <img class="card-img-top" src="{{ p.imagen.url }}" alt="imagen producto" width="300">
+                {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title"> {{ p.nombreProducto }}</h2>
+                    <h1 class="card-text">{{  p.marca  | capfirst }}</h1>
+                    <h3 class="card-text">${{  p.precio  | intcomma }}</h3>
+                    <button class="btn btn-primary add-btn">Agregar al Carro</button>
+                    <a class="btn btn-success" href="#">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+<br> {% endblock %}
