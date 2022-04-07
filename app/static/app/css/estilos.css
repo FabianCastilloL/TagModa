@@ -1,9 +1,9 @@
 body {
-    background: #bdc3c7;
+    background: #eff0f0;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #468f7f, #bdc3c7);
+    background: -webkit-linear-gradient(to right, #fbfbfb, #e19696);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #34689c, #bdc3c7);
+    background: linear-gradient(to right, #e5d2d2, #555772);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -21,6 +21,17 @@ body {
 .container {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.card {
+    margin: 20px 10px;
+}
+
+.card-img-top {
+    height: 190px;
+    width: 190px;
+    margin: 10px 20px 10px 1px;
+    border-style: solid;
 }
 
 .centrado {
@@ -41,11 +52,11 @@ img.centrado:hover {
 }
 
 .footerfondo {
-    background: #bdc3c7;
+    background: #5ca2aa;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #7faca2, #0d262f);
+    background: -webkit-linear-gradient(to right, #ffffff, #f9f9f9);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #c1c7cc, #5eb972);
+    background: linear-gradient(to right, #e19696, #f0f800);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -93,11 +104,8 @@ img.centrado:hover {
 
 .whatsapp-icon {
     margin-top: 13px;
-<<<<<<< HEAD
 }
 
 .textoC {
     color: black;
-=======
->>>>>>> 5ecc1d81a92c5b2026747e7a12612856d598c08d
 }
