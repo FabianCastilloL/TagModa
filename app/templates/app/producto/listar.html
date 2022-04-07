@@ -1,0 +1,67 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+<!-- blocke jv -->
+{% block js %}
+<!-- mensaje de confirmacion -->
+<script>
+    function eliminarPro(id) {
+        Swal.fire({
+            "title":"¿Estas Seguro?",
+            "text":"Esta accion no se puede deshacer",
+            "icon":"warning",
+            "showCancelButton":true,
+            "cancelButtonText":"NO",
+            "confirmButtonText":"SI",
+            "confirmButtonColor":"#dc3545"
+        })
+        .then(function(result) {
+            if(result.isConfirmed){
+                window.location.href = "/eliminar-producto/"+id+"/"
+            }
+        })
+    }
+</script>
+
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de productos</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>Opciones</th>
+            </tr>
+        
+            {% for p in entity %}
+            <tr>
+                <td>{{ p.nombreProducto | title }}</td>
+                <td>${{ p.precio | intcomma }}</td>
+                <td>{{ p.marca }}</td>
+                <td>
+                    <a href="{% url 'modificar_productos' p.id %} " class="btn btn-info btn-sm">Modificar</a>
+                    <a href="#" onclick="eliminarPro({{ p.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        
+        
+            {% endfor %}
+        
+        </table>
+        <hr>
+        <div>
+            {% include 'app/paginator.html' %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

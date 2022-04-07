@@ -1,9 +1,9 @@
 body {
-    background: #768a91;
+    background: #eff0f0;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #807272, #e19696);
+    background: -webkit-linear-gradient(to right, #fbfbfb, #e19696);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #b4a4a4, #141852);
+    background: linear-gradient(to right, #e5d2d2, #555772);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -27,13 +27,11 @@ body {
     margin: 20px 10px;
 }
 
-.card img-top {
-    height: 250px;
-}
-
-.card-body a {
-    color: #285AEB;
-    font-weight: 600;
+.card-img-top {
+    height: 190px;
+    width: 190px;
+    margin: 10px 20px 10px 1px;
+    border-style: solid;
 }
 
 .centrado {
@@ -54,11 +52,11 @@ img.centrado:hover {
 }
 
 .footerfondo {
-    background: #bdc3c7;
+    background: #5ca2aa;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #7faca2, #0d262f);
+    background: -webkit-linear-gradient(to right, #ffffff, #f9f9f9);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #c1c7cc, #5eb972);
+    background: linear-gradient(to right, #e19696, #f0f800);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 

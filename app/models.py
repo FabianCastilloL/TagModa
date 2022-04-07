@@ -28,7 +28,8 @@ class Producto( models.Model):
 opciones_consultas = [
     [0,"Consulta"],
     [1,"Reclamo"],
-    [2,"Sugerencias"]
+    [2,"Sugerencias"],
+    [3,"Cambio Producto"],
 ]
 
 class Contacto(models.Model):
