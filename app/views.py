@@ -54,6 +54,7 @@ def agregar_producto (request):
         'form':Productoform()
     }
 
+
     if request.method == 'POST':
         formulario = Productoform(data=request.POST, files=request.FILES )
         if formulario.is_valid():
