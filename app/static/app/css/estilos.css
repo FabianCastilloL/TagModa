@@ -21,6 +21,7 @@ body {
 .container {
     margin-top: 15px;
     margin-bottom: 15px;
+    font-family: 'Gill Sans MT';
 }
 
 .card {
@@ -28,10 +29,24 @@ body {
 }
 
 .card-img-top {
-    height: 190px;
-    width: 190px;
+    height: 192px;
+    width: 192px;
     margin: 10px 20px 10px 1px;
     border-style: solid;
+}
+
+#tituloProducto {
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-size: xx-large;
+}
+
+#marcaProducto {
+    font-family: Helvetica, sans-serif;
+    font-size: x-large;
+}
+
+#precioProducto {
+    font-size: large;
 }
 
 .centrado {
@@ -108,4 +123,5 @@ img.centrado:hover {
 
 .textoC {
     color: black;
+    font-family: 'Gill Sans MT'
 }
