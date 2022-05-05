@@ -11,13 +11,26 @@ class Marca(models.Model):
     def __str__(self):
         return self.nombreMarca
 
+class Category(models.Model):
+    name= models.CharField(max_length=50)
+
+    @staticmethod
+    def get_all_categories():
+        return Category.objects.all()
+
+    def __str__(self):
+        return self.name
+
+
 class Producto( models.Model):
+
     imagen = models.ImageField(upload_to="productos", null=True)
-    nombreProducto = models.CharField(max_length=80)
+    nombreProducto = models.CharField(max_length=80, null=True)
     precio = models.IntegerField()
     descripcion = models.TextField()
     talla = models.CharField(max_length=5)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    categoria = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nombreProducto

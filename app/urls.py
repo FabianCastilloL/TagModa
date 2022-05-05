@@ -1,12 +1,13 @@
 from ast import Div
 from unicodedata import name
 from django.urls import path
-from .views import agregar_producto, home, sobreNosotros, productos, carrito,contacto,listar_productos,modificar_productos,eliminar_producto
+from .views import agregar_producto, home, sobreNosotros, productos, carrito,contacto,listar_productos,modificar_productos,eliminar_producto,detalleProducto
 
 urlpatterns = [
     path('', home, name="home"),
     path('sobreNosotros/', sobreNosotros, name="sobreNosotros"),
     path('productos/', productos, name="productos"),
+    path('productos/<id>',detalleProducto , name="detail"),
     path('carrito/', carrito, name="carrito"),
     path('contacto/',contacto , name="contacto"),
     path('agragar-producto/', agregar_producto, name="agregar_producto"),

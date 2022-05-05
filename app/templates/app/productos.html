@@ -2,22 +2,25 @@
 <br> {% load humanize %}
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for p in productos %}
+        {% for p in entity %}
         <div class="producto">
             <div class="card text-center h-80 bg-secondary">
                 <center>
                     {% if p.imagen %}
-                    <img class="card-img-top" src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
+                    <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top"
+                        src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
                     <div class="card-body bg-white">
                         <hr>
-                        <h2 class="card-title"> {{ p.nombreProducto }}</h2>
+                        <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto }}</h2>
                         <hr>
-                        <h1 class="card-text">{{ p.marca | capfirst }}</h1>
-                        <h3 class="card-text">${{ p.precio | intcomma }}</h3>
-                        <hr>
-                        <button class="btn btn-primary add-btn">Agregar al Carro</button>
-
-                        <a class="btn btn-success ver-btn" href="#">Ver</a>
+                        <h1 class="card-text" id="marcaProducto">{{ p.marca | capfirst }}</h1>
+                        <h3 class="card-text" id="precioProducto">${{ p.precio | intcomma }}</h3>
+                        <div class="card-footer text-center bg-white producto">
+                            <button data-producto="{{p.id}}" data-action="add"
+                                class="btn btn-primary add-btn update-carro">Agregar al Carro</button>
+                            <hr>
+                            <a class="btn btn-success ver-btn" href="{% url 'detail' p.id %}">Ver</a>
+                        </div>
                     </div>
                 </center>
             </div>

@@ -32,13 +32,27 @@ def contacto(request):
 
     return render(request, 'app/contacto.html',data)
 
-def productos(request):
-
+def productos(request): 
     productos = Producto.objects.all()
+    page = request.GET.get('page',1)
+    try:
+        # cantidad de items que muestra el listado 
+        paginator = Paginator(productos,3)
+        productos= paginator.page(page)
+    except:
+        raise Http404
     data = {
-        'productos' : productos
+        'entity' : productos,
+        'paginator' :paginator,
     }
+
     return render(request, 'app/productos.html',data) 
+
+def detalleProducto(request,id):
+    obj = get_object_or_404(Producto,pk=id)
+    return render (request,'app/detalle.html',{'obj':obj})
+
+
 
 def carrito(request):
     return render(request, 'app/carrito.html')
