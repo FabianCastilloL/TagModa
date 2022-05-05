@@ -1,8 +1,17 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %}
 <br> {% load humanize %}
+
+<div class="row row-cols-1 row-cols-md-2 g-4" >
+    <form  method="get" style="margin-left: 400px; margin-right: 400px;">
+        <h2>Filtrar Productos</h2>
+        {{ filter.form.as_table  }}
+        <input type="submit" />
+    </form>
+</div>
 <div class="container">
+    
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for p in entity %}
+        {% for p in filter.qs %}
         <div class="producto">
             <div class="card text-center h-80 bg-secondary">
                 <center>

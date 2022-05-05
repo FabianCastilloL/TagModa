@@ -2,3 +2,4 @@ django == 4.0
 pillow
 django-crispy-forms
 django-admin-interface
+django-filter

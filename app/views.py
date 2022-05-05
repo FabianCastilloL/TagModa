@@ -7,6 +7,7 @@ from .forms import ContactoForms,Productoform
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
+from .filters import filtro_prod
 # Create your views here.
 
 
@@ -34,6 +35,8 @@ def contacto(request):
 
 def productos(request): 
     productos = Producto.objects.all()
+    pord_filtro = filtro_prod(request.GET,queryset=productos)
+
     page = request.GET.get('page',1)
     try:
         # cantidad de items que muestra el listado 
@@ -41,12 +44,13 @@ def productos(request):
         productos= paginator.page(page)
     except:
         raise Http404
-    data = {
+    context = {
         'entity' : productos,
         'paginator' :paginator,
+        'filter' : pord_filtro,
     }
 
-    return render(request, 'app/productos.html',data) 
+    return render(request, 'app/productos.html',context) 
 
 def detalleProducto(request,id):
     obj = get_object_or_404(Producto,pk=id)
