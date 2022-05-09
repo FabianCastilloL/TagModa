@@ -1,24 +1,17 @@
-{% extends 'app/base.html' %}
-{% load static %}
-
-{% block content %}
-
-{% load crispy_forms_tags %}
+{% extends 'app/base.html' %} {% load static %} {% block content %} {% load crispy_forms_tags %}
 <br>
-<div class="row">
+<div class="container">
     <div class="col-12 col-md-6 offset-md-3">
-        <div class="car">
-            <div class="car-body">
-                <h2>Nuevo producto</h2>
+        <div class="card bg-secondary">
+            <div class="p-3 mb-2 bg-secondary text-black">
+                <h2 id="nuevoProducto">Nuevo producto</h2>
                 <hr>
                 <form action="" method="post" enctype="multipart/form-data">
 
-                    {% csrf_token %}
-                    {{ form | crispy }}
+                    {% csrf_token %} {{ form | crispy }}
 
                     <div class="d-flex justify-content-center">
-                        <input type="reset" value="Cancelar" class="btn btn-secondary">
-                        &nbsp;
+                        <input type="reset" value="Limpiar" class="btn btn-danger"> &nbsp;
                         <input type="submit" value="Guardar" class="btn btn-primary">
                     </div>
 
@@ -28,6 +21,7 @@
         </div>
 
     </div>
+
 
 </div>
 

@@ -3,9 +3,12 @@ body {
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #fbfbfb, #e19696);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e5d2d2, #555772);
+    background: linear-gradient(to right, #F7F9F9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: Arial, Helvetica, sans-serif, 'Arial Narrow', Arial, sans-serif
 }
+
+
 
 .carousel-inner img {
     width: 100%;
@@ -25,6 +28,21 @@ body {
 
 .card {
     margin: 20px 10px;
+}
+
+
+/*Productos*/
+
+#tituloProducto {
+    font-size: xx-large;
+}
+
+#marcaProducto {
+    font-size: x-large;
+}
+
+#precioProducto {
+    font-size: large;
 }
 
 .card-img-top {
@@ -52,17 +70,18 @@ img.centrado:hover {
 }
 
 .footerfondo {
-    background: #5ca2aa;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffffff, #f9f9f9);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e19696, #f0f800);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #b0daed71;
+    height: 100%;
+    width: 100%;
 }
 
 .footerfondo ul li a:hover {
-    color: #f56c49;
-    padding-left: 2px;
+    color: #000000;
+    padding-left: 50px;
+}
+
+#footerLogo {
+    height: 100px;
 }
 
 .fa-instagram {
@@ -108,10 +127,4 @@ img.centrado:hover {
 
 .textoC {
     color: black;
-}
-
-.filtro_prod{
-
-
-/* aplicar estilos para los filtros de prodcutos */
 }

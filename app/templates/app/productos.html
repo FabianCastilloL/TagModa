@@ -1,33 +1,38 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %}
 <br> {% load humanize %}
 
-<div class="row row-cols-1 row-cols-md-2 g-4" >
-    <form  method="get" style="margin-left: 400px; margin-right: 400px;">
-        <h2>Filtrar Productos</h2>
-        {{ filter.form.as_table  }}
-        <input type="submit" />
-    </form>
-</div>
+
 <div class="container">
-    
+    <!-- Filtro de productos -->
+    <div class="row row-cols-1 row-cols-md-1 g-2">
+        <span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
+            <form method="get">
+                <h2>Filtrar Productos</h2>
+                {{ filter.form.as_p }}
+                <button class="btn btn-primary" type="submit">BUSCAR PRODUCTO</button>
+                <a class="btn btn-primary" href="{% url 'productos' %}">QUITAR FILTRO</a>
+            </form>
+        </span>
+    </div>
+
+    <br>
+
+    <!-- listado de productos -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for p in filter.qs %}
         <div class="producto">
-            <div class="card text-center h-80 bg-secondary">
+            <div class="text-center border border-dark border-3" style="border-radius: 15px;">
                 <center>
                     {% if p.imagen %}
                     <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top"
                         src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
-                    <div class="card-body bg-white">
-                        <hr>
-                        <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto }}</h2>
-                        <hr>
+                    <div class="card-body">
+                        <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto | capfirst }}</h2>
                         <h1 class="card-text" id="marcaProducto">{{ p.marca | capfirst }}</h1>
                         <h3 class="card-text" id="precioProducto">${{ p.precio | intcomma }}</h3>
-                        <div class="card-footer text-center bg-white producto">
+                        <div class="text-center producto">
                             <button data-producto="{{p.id}}" data-action="add"
                                 class="btn btn-primary add-btn update-carro">Agregar al Carro</button>
-                            <hr>
                             <a class="btn btn-success ver-btn" href="{% url 'detail' p.id %}">Ver</a>
                         </div>
                     </div>
@@ -37,5 +42,6 @@
         {% endfor %}
     </div>
 </div>
+
 
 <br> {% endblock %}

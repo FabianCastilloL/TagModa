@@ -7,6 +7,7 @@ from .forms import ContactoForms,Productoform
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
+
 from .filters import filtro_prod
 # Create your views here.
 
@@ -123,3 +124,5 @@ def eliminar_producto(request,id):
     producto.delete()
     messages.success(request, "Eliminado Correctamente")
     return redirect(to="listar_productos")
+
+
