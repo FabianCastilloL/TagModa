@@ -2,7 +2,7 @@ from importlib.metadata import files
 from urllib.request import Request
 from django.http import Http404
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Producto
+from .models import Producto,Category
 from .forms import ContactoForms,Productoform
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -34,24 +34,34 @@ def contacto(request):
 
     return render(request, 'app/contacto.html',data)
 
-def productos(request): 
+
+#validacion para filtro
+def is_valid_queryparam(param):
+    return param !='' and param is not None
+
+def productos(request):
     productos = Producto.objects.all()
-    pord_filtro = filtro_prod(request.GET,queryset=productos)
+    categorias = Category.objects.all()
+    
+    nombre_prod = request.GET.get('nombre_producto')
+    category = request.GET.get('catt')
 
-    page = request.GET.get('page',1)
-    try:
-        # cantidad de items que muestra el listado 
-        paginator = Paginator(productos,3)
-        productos= paginator.page(page)
-    except:
-        raise Http404
+    if is_valid_queryparam(nombre_prod):
+        productos = productos.filter(nombreProducto__icontains=nombre_prod)
+    
+    if is_valid_queryparam(category)and  category !='Selecciona...':
+        productos = productos.filter(categoria__name=category)
+    
     context = {
-        'entity' : productos,
-        'paginator' :paginator,
-        'filter' : pord_filtro,
+        'productos' : productos,
+        'categorias': categorias
     }
-
     return render(request, 'app/productos.html',context) 
+    
+
+ 
+
+
 
 def detalleProducto(request,id):
     obj = get_object_or_404(Producto,pk=id)

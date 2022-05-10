@@ -8,8 +8,16 @@
         <span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
             <form method="get">
                 <h2>Filtrar Productos</h2>
-                {{ filter.form.as_p }}
-                <button class="btn btn-primary" type="submit">BUSCAR PRODUCTO</button>
+                <input type="search" class="form-control py-2 border-right-0 border" name="nombre_producto" placeholder="Buscar...">
+                <label for="catt">Categorias</label>
+                <select id=" catt" class="form-control" name="catt">
+                    <option selected>Selecciona...</option>
+                    {% for cat in categorias %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                    {% endfor %}
+                </select>
+                <hr>
+                <input class="btn btn-primary" type="submit" />
                 <a class="btn btn-primary" href="{% url 'productos' %}">QUITAR FILTRO</a>
             </form>
         </span>
@@ -19,13 +27,14 @@
 
     <!-- listado de productos -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for p in filter.qs %}
+        {% for p in productos %}
         <div class="producto">
             <div class="text-center border border-dark border-3" style="border-radius: 15px;">
                 <center>
                     {% if p.imagen %}
                     <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top"
-                        src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
+                        src="{{ p.imagen.url }}" alt="imagen producto" width="300"> 
+                    {% endif %}
                     <div class="card-body">
                         <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto | capfirst }}</h2>
                         <h1 class="card-text" id="marcaProducto">{{ p.marca | capfirst }}</h1>
