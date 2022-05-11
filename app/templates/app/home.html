@@ -1,10 +1,18 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %}
 
 <!-- CARRUSEL-->
-
-
+{% if user.is_authenticated %}
+<span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
+    <form method="get">
+        <h5>bienvenido {{ user.username }}  </h2>
+        
+    </form>
+</span>
+{% endif%}
 <br>
 <div class="container">
+   
+
     <div id="carouselExampleDark" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -71,7 +79,7 @@
 </div>
 
 
-
+<br>
 <span class="d-sm-block p-2 bg-dark text-white text-center d-none ">
     <p class="lead">
     <div class="box-element hidden text-center" id="payment-info">

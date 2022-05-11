@@ -9,29 +9,7 @@ from django.db import models
 # Create your models here.
 
 
-class Cliente(models.Model):
-    primer_nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    numero = models.CharField(max_length=9)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
 
-    def register(self):
-        self.save()
-
-    @staticmethod
-    def get_customer_by_email(email):
-        try:
-            return Cliente.objects.get(email= email)
-        except:
-            return False
-
-
-    def isExists(self):
-        if Cliente.objects.filter(email = self.email):
-            return True
-
-        return False    
 
 
 class Marca(models.Model):
