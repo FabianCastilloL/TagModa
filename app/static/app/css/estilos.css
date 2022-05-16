@@ -3,8 +3,17 @@ body {
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #fbfbfb, #e19696);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e5d2d2, #555772);
+    background: linear-gradient(to right, #F7F9F9);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: Arial, Helvetica, sans-serif, 'Arial Narrow', Arial, sans-serif
+}
+
+#chg-quantity {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
 }
 
 .carousel-inner img {
@@ -21,32 +30,32 @@ body {
 .container {
     margin-top: 15px;
     margin-bottom: 15px;
-    font-family: 'Gill Sans MT';
 }
 
 .card {
     margin: 20px 10px;
 }
 
-.card-img-top {
-    height: 192px;
-    width: 192px;
-    margin: 10px 20px 10px 1px;
-    border-style: solid;
-}
+
+/*Productos*/
 
 #tituloProducto {
-    font-family: Georgia, Times, 'Times New Roman', serif;
     font-size: xx-large;
 }
 
 #marcaProducto {
-    font-family: Helvetica, sans-serif;
     font-size: x-large;
 }
 
 #precioProducto {
     font-size: large;
+}
+
+.card-img-top {
+    height: 190px;
+    width: 190px;
+    margin: 10px 20px 10px 1px;
+    border-style: solid;
 }
 
 .centrado {
@@ -67,17 +76,18 @@ img.centrado:hover {
 }
 
 .footerfondo {
-    background: #5ca2aa;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffffff, #f9f9f9);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e19696, #f0f800);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #b0daed71;
+    height: 100%;
+    width: 100%;
 }
 
 .footerfondo ul li a:hover {
-    color: #f56c49;
-    padding-left: 2px;
+    color: #000000;
+    padding-left: 50px;
+}
+
+#footerLogo {
+    height: 100px;
 }
 
 .fa-instagram {
@@ -123,5 +133,4 @@ img.centrado:hover {
 
 .textoC {
     color: black;
-    font-family: 'Gill Sans MT'
 }
