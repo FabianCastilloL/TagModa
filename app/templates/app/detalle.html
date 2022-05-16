@@ -12,17 +12,19 @@
 
             <div class="col-lg-5 col-md-12 col-12">
                 <h6>{{ obj.tipo }}</h6>
-                <hr>
+                <p class="text-center lead" id="textoHome">PRODUCTOS</p>
                 <h3>{{ obj.marca | capfirst }}</h3>
                 <hr>
                 <h2>{{ obj.nombreProducto | capfirst}}</h2>
                 <hr>
                 <h1>${{ obj.precio | intcomma}}</h1>
                 <hr>
-                <h3>talla: {{ obj.talla }}</h3>
+                <h3>Talla: {{ obj.talla }}</h3>
                 <hr>
-                <input class="cant_pord" type="number" value="1" width="50px">
-                <button class="buy-btn">Añadir al Carro</button>
+                <center>
+                    <button data-producto="{{obj.id}}" data-action="add" class="btn btn-primary add-btn update-carro">Agregar al Carrito</button>
+
+                </center>
                 <h5 class="mt-5 mb-5">Descripcion </h5>
                 <samp>{{ obj.descripcion }}</samp>
             </div>
@@ -30,6 +32,8 @@
     </section>
 
 </body>
+
+
 
 
 {% endblock %}

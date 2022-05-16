@@ -32,16 +32,15 @@
             <div class="text-center border border-dark border-3" style="border-radius: 15px;">
                 <center>
                     {% if p.imagen %}
-                    <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top"
-                        src="{{ p.imagen.url }}" alt="imagen producto" width="300"> 
-                    {% endif %}
+                    <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top" src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
                     <div class="card-body">
                         <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto | capfirst }}</h2>
                         <h1 class="card-text" id="marcaProducto">{{ p.marca | capfirst }}</h1>
                         <h3 class="card-text" id="precioProducto">${{ p.precio | intcomma }}</h3>
                         <div class="text-center producto">
-                            <button data-producto="{{p.id}}" data-action="add"
-                                class="btn btn-primary add-btn update-carro">Agregar al Carro</button>
+                            {% if user.is_authenticated %}
+                            <button data-producto="{{p.id}}" data-action="add" class="btn btn-primary add-btn update-carro">Agregar al Carro</button>
+                            {% endif %}
                             <a class="btn btn-success ver-btn" href="{% url 'detail' p.id %}">Ver</a>
                         </div>
                     </div>

@@ -8,7 +8,13 @@ body {
     font-family: Arial, Helvetica, sans-serif, 'Arial Narrow', Arial, sans-serif
 }
 
-
+#chg-quantity {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
+}
 
 .carousel-inner img {
     width: 100%;

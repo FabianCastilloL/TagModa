@@ -4,23 +4,16 @@
 {% if user.is_authenticated %}
 <span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
     <form method="get">
-        <h5>bienvenido {{ user.username }}  </h2>
-        
+        <h5>Bienvenido {{ user.first_name |capfirst }}  a Tag Moda ✨ </h5>
     </form>
-</span>
-{% endif%}
+</span> {% endif %}
 <br>
 <div class="container">
-   
-
     <div id="carouselExampleDark" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
@@ -70,8 +63,7 @@
 
     <hr>
 
-    <img src="{% static 'app/img/modelos.png' %}" class="img-fluid rounded mx-auto d-block border border-dark"
-        id="imgModelos">
+    <img src="{% static 'app/img/modelos.png' %}" class="img-fluid rounded mx-auto d-block border border-dark" id="imgModelos">
     <h1 class="text-center lead text-decoration-none">
         <a href="{% url 'productos' %}"><kbd>Productos</kbd></a>
         <hr>
@@ -79,7 +71,7 @@
 </div>
 
 
-<br>
+
 <span class="d-sm-block p-2 bg-dark text-white text-center d-none ">
     <p class="lead">
     <div class="box-element hidden text-center" id="payment-info">

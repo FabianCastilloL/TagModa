@@ -1,7 +1,7 @@
 from atexit import register
 from re import search
 from django.contrib import admin
-from .models import Marca, Producto,Contacto,Category
+from .models import Marca, Producto,Contacto,Category,Pedido,ProductosPedidos,DireccionEnvio
 # Register your models here.
 
 class ProductoAdmin(admin.ModelAdmin):
@@ -16,6 +16,9 @@ class ContactoAdmin(admin.ModelAdmin):
     list_filter = ["tipo_consulta"]
 
 
+admin.site.register(Pedido)
+admin.site.register(ProductosPedidos)
+admin.site.register(DireccionEnvio)
 admin.site.register(Marca)
 admin.site.register(Category)
 admin.site.register(Producto,ProductoAdmin)
