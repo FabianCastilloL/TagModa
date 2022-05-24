@@ -1,7 +1,7 @@
 var updateBtns = document.getElementsByClassName('update-carro')
 
 for (var i = 0; i < updateBtns.length; i++) {
-    updateBtns[i].addEventListener('click', function () {
+    updateBtns[i].addEventListener('click', function() {
         var productoId = this.dataset.producto
         var action = this.dataset.action
         console.log('productoId: ', productoId, 'action:', action)
@@ -30,14 +30,14 @@ function actualizarUsuarioPedido(productoId, action) {
 
     })
 
-        .then((response) => {
-            return response.json()
-        })
+    .then((response) => {
+        return response.json()
+    })
 
-        .then((data) => {
-            console.log('data:', data)
-            location.reload()
-        })
+    .then((data) => {
+        console.log('data:', data)
+        location.reload()
+    })
 
 
 }

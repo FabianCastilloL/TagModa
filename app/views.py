@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from importlib.metadata import files
+from pickletools import read_uint1
 from urllib.request import Request
+from wsgiref.util import request_uri
 from django.http import Http404
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Producto,Category
@@ -49,9 +51,15 @@ def is_valid_queryparam(param):
 def productos(request):
     productos = Producto.objects.all()
     categorias = Category.objects.all()
-    
+    marcs = Marca.objects.all()
+    gen = Genero.objects.all()
+
     nombre_prod = request.GET.get('nombre_producto')
     category = request.GET.get('catt')
+    Nom_marcas = request.GET.get('marr')
+    tipo_genero = request.GET.get('gen')
+
+
 
     if is_valid_queryparam(nombre_prod):
         productos = productos.filter(nombreProducto__icontains=nombre_prod)
@@ -59,15 +67,32 @@ def productos(request):
     if is_valid_queryparam(category)and  category !='Selecciona...':
         productos = productos.filter(categoria__name=category)
     
+    if is_valid_queryparam(Nom_marcas)and  Nom_marcas !='Selecciona...':
+        productos = productos.filter(marca__nombreMarca=Nom_marcas)
+    
+    if is_valid_queryparam(tipo_genero):
+        productos = productos.filter(genero__nombreGenero=tipo_genero)
+
     context = {
         'productos' : productos,
-        'categorias': categorias
+        'categorias': categorias,
+        'marca': marcs,
+        'genero':gen
     }
     return render(request, 'app/productos.html',context) 
     
+
+
 def detalleProducto(request,id):
+    productos = Producto.objects.all()
     obj = get_object_or_404(Producto,pk=id)
-    return render (request,'app/detalle.html',{'obj':obj})
+    data = {
+        'productos' : productos,
+        'obj':obj
+    }
+    
+    
+    return render (request,'app/detalle.html',data)
 
 
 @login_required

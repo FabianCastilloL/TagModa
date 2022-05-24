@@ -19,6 +19,15 @@ class Marca(models.Model):
     def __str__(self):
         return self.nombreMarca
 
+
+class Genero(models.Model):
+    nombreGenero = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombreGenero
+
+
+
 class Category(models.Model):
     name= models.CharField(max_length=50)
 
@@ -39,7 +48,8 @@ class Producto(models.Model):
     talla = models.CharField(max_length=5)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Category, on_delete=models.PROTECT)
-
+    genero = models.ForeignKey(Genero, on_delete=models.PROTECT)
+    
     def __str__(self):
         return self.nombreProducto
 

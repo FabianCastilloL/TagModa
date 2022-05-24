@@ -1,55 +1,270 @@
-{% extends 'app/base.html' %} {% load static %} {% block content %}
-<br> {% load humanize %}
+{% extends 'app/base.html' %} {% load static %} {% block content %} {% load humanize %}
 
 
-<div class="container">
-    <!-- Filtro de productos -->
-    <div class="row row-cols-1 row-cols-md-1 g-2">
-        <span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
-            <form method="get">
-                <h2>Filtrar Productos</h2>
-                <input type="search" class="form-control py-2 border-right-0 border" name="nombre_producto" placeholder="Buscar...">
-                <label for="catt">Categorias</label>
-                <select id=" catt" class="form-control" name="catt">
-                    <option selected>Selecciona...</option>
-                    {% for cat in categorias %}
-                    <option value="{{ cat }}">{{ cat }}</option>
-                    {% endfor %}
-                </select>
-                <hr>
-                <input class="btn btn-primary" type="submit" />
-                <a class="btn btn-primary" href="{% url 'productos' %}">QUITAR FILTRO</a>
+
+<body>
+
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
             </form>
-        </span>
+        </div>
     </div>
 
-    <br>
+    <!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+            <!-- Filtro -->
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">Categories</h1>
+                <ul class="list-unstyled templatemo-accordion">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Genero
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            {% for g in genero%}
+                            <li>
+                                <a class="text-decoration-none" href="?gen={{ g }}">{{ g }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Categorias
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            {% for cat in categorias %}
+                            <li>
+                                <a class="text-decoration-none" href="?catt={{ cat }}">{{ cat }}</a>
+                            </li>
+                            {% endfor %}
 
-    <!-- listado de productos -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for p in productos %}
-        <div class="producto">
-            <div class="text-center border border-dark border-3" style="border-radius: 15px;">
-                <center>
-                    {% if p.imagen %}
-                    <img onclick="window.location.href='{% url 'detail' p.id %}'" class="card-img-top" src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
-                    <div class="card-body">
-                        <h2 class="card-title" id="tituloProducto"> {{ p.nombreProducto | capfirst }}</h2>
-                        <h1 class="card-text" id="marcaProducto">{{ p.marca | capfirst }}</h1>
-                        <h3 class="card-text" id="precioProducto">${{ p.precio | intcomma }}</h3>
-                        <div class="text-center producto">
-                            {% if user.is_authenticated %}
-                            <button data-producto="{{p.id}}" data-action="add" class="btn btn-primary add-btn update-carro">Agregar al Carro</button>
-                            {% endif %}
-                            <a class="btn btn-success ver-btn" href="{% url 'detail' p.id %}">Ver</a>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Marca
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                            {% for m in marca %}
+                            <li>
+                                <a class="text-decoration-none" href="?marr={{ m }}">{{ m }}</a>
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Filtro -->
+
+
+            <div class="col-lg-9">
+                <!-- Buscador -->
+                <form method="GET">
+                    <div class="col-md-5 pb-4">
+                        <div class="d-flex">
+                            <input type="search" class="form-control py-2 border-right-0 border" name="nombre_producto" placeholder="Buscar...">
+                            <input type="submit" class="btn btn-success btn-lg" value="Ir">
                         </div>
                     </div>
-                </center>
+                </form>
+
+                <!-- Buscador -->
+
+
+
+
+                <div class="row">
+
+
+                    <!-- Producto -->
+
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for p in productos %}
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                {% if p.imagen %}
+                                <img class="card-img rounded-0 img-fluid" src="{{ p.imagen.url }}" alt="imagen producto" width="300"> {% endif %}
+
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white mt-2" href="{% url 'detail' p.id %}"><i
+                                                    class="far fa-eye"></i></a></li>
+                                        <br>
+                                        <li><a data-producto="{{p.id}}" data-action="add" class="btn btn-success add-btn text-white update-carro" href="#"><i
+                                                    class="fas fa-cart-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body" onclick="window.location.href='{% url 'detail' p.id %}'">
+                                <a href="{% url 'detail' p.id %}" class="h3 text-decoration-none">{{ p.nombreProducto|capfirst }}</a>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                    <li>{{ p.marca | capfirst }}</li>
+
+
+                                    <!-- Etiquetas -->
+                                    <!-- <li class="pt-2">
+                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                    </li> -->
+
+
+                                </ul>
+                                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <p class="text-center mb-0">${{ p.precio | intcomma }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Producto -->
+                </div>
+
+                <!-- Paginator -->
+                <!-- <div div="row">
+                    <ul class="pagination pagination-lg justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+                        </li>
+                    </ul>
+                </div> 
+
+                <-- Paginator -->
+            </div>
+
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Start Brands -->
+    <section class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Marcas Asociadas</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+
+
+
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                                <i class="text-light fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+
+
+
+                        <!--Carousel Wrapper-->
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+
+                                <!--Slides-->
+                                <div class="carousel-inner product-links-wap" role="listbox">
+
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_01.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_02.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_03.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_04.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End First slide-->
+
+                                    <!--Second slide-->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_01.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_02.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_03.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-3 p-md-5">
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'app/img/brand_04.png' %}" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Second slide-->
+
+
+
+                                </div>
+                                <!--End Slides-->
+                            </div>
+                        </div>
+                        <!--End Carousel Wrapper-->
+
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                                <i class="text-light fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+                    </div>
+                </div>
             </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
+    </section>
+    <!--End Brands-->
 
+</body>
 
-<br> {% endblock %}
+</html>
+
+{% endblock %}

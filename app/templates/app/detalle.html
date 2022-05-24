@@ -2,36 +2,174 @@
 
 
 
-<body>
-
-    <section class="container prod my-5 pt-5">
-        <div class="row mt-5">
-            <div class="col-lg-5 col-md-12 col-12">
-                <img class="img-fluid w-100" src="{{ obj.imagen.url }}" alt="imagen producto">
+<!-- Detalle producto -->
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid" src="{{ obj.imagen.url }}" alt="Card image cap" id="product-detail">
+                </div>
+                <div class="row">
+                </div>
             </div>
+            <!-- col end -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="h2">{{ obj.nombreProducto | capfirst}}</h1>
+                        <p class="h3 py-2">${{ obj.precio | intcomma}}</p>
+                        <p class="py-2">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <span class="list-inline-item text-dark">5 Estrellas</span>
+                        </p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Marca:</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="text-muted"><strong>{{ obj.marca | capfirst }}</strong></p>
+                            </li>
+                        </ul>
 
-            <div class="col-lg-5 col-md-12 col-12">
-                <h6>{{ obj.tipo }}</h6>
-                <p class="text-center lead" id="textoHome">PRODUCTOS</p>
-                <h3>{{ obj.marca | capfirst }}</h3>
-                <hr>
-                <h2>{{ obj.nombreProducto | capfirst}}</h2>
-                <hr>
-                <h1>${{ obj.precio | intcomma}}</h1>
-                <hr>
-                <h3>Talla: {{ obj.talla }}</h3>
-                <hr>
-                <center>
-                    <button data-producto="{{obj.id}}" data-action="add" class="btn btn-primary add-btn update-carro">Agregar al Carrito</button>
+                        <h6>Descripcion:</h6>
+                        <p>{{ obj.descripcion }}</p>
+                        <br>
 
-                </center>
-                <h5 class="mt-5 mb-5">Descripcion </h5>
-                <samp>{{ obj.descripcion }}</samp>
+
+                        <form action="" method="GET">
+                            <input type="hidden" name="product-title" value="Activewear">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item">Size :
+                                            <input type="hidden" name="product-size" id="product-size" value="S">
+                                        </li>
+                                        <li class="list-inline-item"><span class="btn btn-success btn-size">{{ obj.talla }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {% if user.is_authenticated %}
+                            <div class="row pb-3">
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button data-producto="{{obj.id}}" data-action="add" class="btn btn-success add-btn update-carro">Agregar al Carrito</button>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Debes estár logeado">
+                                    <button class="btn btn-success" type="button" disabled="">Agregar al Carrito</button>
+                                </span>
+                            </div>
+                            {% endif %}
+                        </form>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-</body>
+<!-- Detalle producto -->
+
+
+
+<!-- Start Article -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-left p-2 pb-3">
+            <h4>Productos Relacionados</h4>
+        </div>
+        <!--Start Carousel Wrapper-->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for p in productos %}
+            <div class="product-wap card rounded-0">
+                <div class="card rounded-0">
+                    <img class="card-img rounded-0 img-fluid" src="{{ p.imagen.url }}">
+                    <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                        <ul class="list-unstyled">
+                            <li><a class="btn btn-success text-white mt-2" href="{% url 'detail' p.id %}"><i
+                                            class="far fa-eye"></i></a></li>
+                            <li><a data-producto="{{p.id}}" data-action="add" class="btn btn-success add-btn text-white update-carro" href="#"><i
+                                                class="fas fa-cart-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'detail' p.id %}" class="h3 text-decoration-none">{{ p.nombreProducto | capfirst }}</a>
+                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                        <li>{{ p.marca | capfirst }}</li>
+                    </ul>
+                    <ul class="list-unstyled d-flex justify-content-center mb-1">
+                        <li>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <p class="text-center mb-0">${{ p.precio | intcomma }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+</section>
+<!-- End Article -->
+
+
+
+<!-- Start Script -->
+<script src="https://kit.fontawesome.com/233286fd50.js" crossorigin="anonymous"></script>
+<script src="{% static 'app/js/jquery-1.11.0.min.js' %}/"></script>
+<script src="{% static 'app/js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'app/js/templatemo.js' %}"></script>
+<script src="{% static 'app/js/custom.js' %}"></script>
+<!-- End Script -->
+
+<!-- Start Slider Script -->
+<script src="{% static 'app/js/slick.min.js' %}"></script>
+<script>
+    $('#carousel-related-product').slick({
+        infinite: true,
+        arrows: false,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        dots: true,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3
+            }
+        }, {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 3
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 3
+            }
+        }]
+    });
+</script>
+<!-- End Slider Script -->
 
 
 
