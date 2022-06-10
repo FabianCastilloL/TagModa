@@ -1,8 +1,9 @@
-from ast import Div
-from unicodedata import name
+from django import views
+from app import views
 from django.urls import path
-from .views import actualizarProducto,agregar_producto, home, sobreNosotros, productos, carrito,contacto,listar_productos,modificar_productos,eliminar_producto,detalleProducto,registro,checkout
+from .views import actualizarProducto,agregar_producto, completo, home, sobreNosotros, productos, carrito,contacto,listar_productos,modificar_productos,eliminar_producto,detalleProducto,registro,checkout
 from django.contrib.auth.decorators import login_required
+
 urlpatterns = [
     path('', home, name="home"),
     path('sobreNosotros/', sobreNosotros, name="sobreNosotros"),
@@ -17,6 +18,6 @@ urlpatterns = [
     path('eliminar-producto/<id>/', eliminar_producto, name="eliminar_producto"),
     path('registro/', registro, name="registro"),
     path('actualizarProducto/', actualizarProducto, name="actualizarProducto"),  
-
+    path('checkout/pagoCompleto/',views.Send.as_view(),name="completo")
 ]
 

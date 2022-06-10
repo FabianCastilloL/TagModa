@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %} {% load humanize %}
 
 <div class="container">
-    <div class="card">
+    <div class="card bg-light">
         <div class="d-grid gap-2 col-2">
             <a class="btn btn-outline-danger btn-sm" href="{% url 'productos' %}" role="button"><img src="{% static 'app/img/atras.png' %}"></a>
         </div>
@@ -9,7 +9,7 @@
             <h2>Carrito de Compras</h2>
         </center>
         <hr>
-        <table class="table" id="miTable">
+        <table class="table-info table-bordered" id="miTable">
             <tr>
                 <th>
                     <h5>Cantidad Productos: <strong>{{pedido.get_cart_items}}</strong></h5>
@@ -24,9 +24,10 @@
                 </th>
             </tr>
         </table>
+        <br>
 
         <div class="table-responsive">
-            <table class="table table-dark table-hover table-sm" id="miTable">
+            <table class="table table-info table-hover table-sm" id="miTable">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -48,33 +49,17 @@
                         {{item.cantidad}} </td>
                     <td><img data-producto={{item.producto.id}} data-action="add" class="chg-quantity update-carro" id="chg-quantity" src="{% static 'app/img/subir.png'%}"></td>
                     <td><img data-producto={{item.producto.id}} data-action="remove" class="chg-quantity update-carro" id="chg-quantity" src="{% static 'app/img/bajar.png'%}"></td>
+
                     <td>${{item.get_total | intcomma}}</td>
+                    <td><img data-producto={{item.producto.id}} data-action="eliminarProducto" class="chg-quantity update-carro" id="chg-quantity" src="{% static 'app/img/basurero.png'%}"></td>
 
                 </tr>
                 {% endfor %}
             </table>
         </div>
     </div>
-    <hr>
-    <div>
-        {% include 'app/paginator.html' %}
-    </div>
-</div>
-
 
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<br> {% endblock %}
+
+{% endblock %}

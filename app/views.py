@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from importlib.metadata import files
+from pickletools import read_uint1
 from urllib.request import Request
+from wsgiref.util import request_uri
 from django.http import Http404
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Producto,Category
@@ -12,13 +14,16 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import *
 from django.http import JsonResponse
-
-from .filters import filtro_prod
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
+from django.views import View
 
 import json
 # Create your views here.
 
-
+def completo(request):
+    return render(request, 'app/pagoCompleto.html')
 # paginas principales
 def home(request):
     return render(request, 'app/home.html')
@@ -49,9 +54,15 @@ def is_valid_queryparam(param):
 def productos(request):
     productos = Producto.objects.all()
     categorias = Category.objects.all()
-    
+    marcs = Marca.objects.all()
+    gen = Genero.objects.all()
+
     nombre_prod = request.GET.get('nombre_producto')
     category = request.GET.get('catt')
+    Nom_marcas = request.GET.get('marr')
+    tipo_genero = request.GET.get('gen')
+
+
 
     if is_valid_queryparam(nombre_prod):
         productos = productos.filter(nombreProducto__icontains=nombre_prod)
@@ -59,15 +70,32 @@ def productos(request):
     if is_valid_queryparam(category)and  category !='Selecciona...':
         productos = productos.filter(categoria__name=category)
     
+    if is_valid_queryparam(Nom_marcas)and  Nom_marcas !='Selecciona...':
+        productos = productos.filter(marca__nombreMarca=Nom_marcas)
+    
+    if is_valid_queryparam(tipo_genero):
+        productos = productos.filter(genero__nombreGenero=tipo_genero)
+
     context = {
         'productos' : productos,
-        'categorias': categorias
+        'categorias': categorias,
+        'marca': marcs,
+        'genero':gen
     }
     return render(request, 'app/productos.html',context) 
     
+
+
 def detalleProducto(request,id):
+    productos = Producto.objects.all()
     obj = get_object_or_404(Producto,pk=id)
-    return render (request,'app/detalle.html',{'obj':obj})
+    data = {
+        'productos' : productos,
+        'obj':obj
+    }
+    
+    
+    return render (request,'app/detalle.html',data)
 
 
 @login_required
@@ -173,6 +201,7 @@ def carrito(request):
         pedido, created = Pedido.objects.get_or_create(cliente=cliente, complete=False)
         items = pedido.productospedidos_set.all()
         cartItems = pedido.get_cart_items
+        
     else:
         items = []
         pedido = {'get_cart_total':0,'get_cart_items':0}
@@ -215,10 +244,45 @@ def actualizarProducto(request):
 
     if action =='remove':
         productosPedidos.cantidad = (productosPedidos.cantidad - 1)
+    
+    if action =='eliminarProducto':
+        productosPedidos.cantidad = 0
             
+
     productosPedidos.save()
 
     if productosPedidos.cantidad <= 0:
         productosPedidos.delete()
 
     return JsonResponse('Item fue agregado', safe=False)
+
+
+
+
+class Send(View):
+    def get(self, request):
+        return render(request, 'app/pagoCompleto.html')
+    
+    def post(self, request):
+        email = request.POST.get('email')
+        print(email)
+
+        template = get_template('app/email-order-success.html')
+
+        # Se renderiza el template y se envias parametros
+        content = template.render({'email': email})
+
+        # Se crea el correo (titulo, mensaje, emisor, destinatario)
+        msg = EmailMultiAlternatives(
+            'Gracias por tu compra',
+            'Hola, te enviamos un correo con tu factura',
+            settings.EMAIL_HOST_USER,
+            [email]
+        )
+
+        msg.attach_alternative(content, 'text/html')
+        msg.send()
+
+        
+
+        return render(request, 'app/pagoCompleto.html')

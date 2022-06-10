@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %} {% load static %} {% block content %} {% load crispy_forms_tags %}
+
+<div>
+<!-- imagen logo -->
+    <div>
+        <h1>¡Tu compra a sido realizado con exito!</h1>
+
+    </div>
+    <div>
+        <h4>hola: {{ user.first_name | capfirst }}</h4>
+
+    </div>
+    <div>
+        <h4>Adjuntamos la boleta correspondiente a la orden de compra NO:201950024.</h4>
+    </div>
+    <div class="col-lg-6">
+        <form
+            action="" class="form-inline subscribe-form auth-form needs-validation" method="post"
+            id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form">
+            {% csrf_token %}
+            <div class="form-group mx-sm-3">
+                <input type="text" class="form-control" name="email" id="mce-EMAIL"
+                    placeholder="Enter your email" required="required">
+            </div>
+            <button type="submit" class="btn btn-solid" id="mc-submit">Subscribe</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

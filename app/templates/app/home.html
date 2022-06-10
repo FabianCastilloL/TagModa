@@ -1,81 +1,215 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %}
 
-<!-- CARRUSEL-->
-{% if user.is_authenticated %}
-<span class="d-flex justify-content-center p-2 bg-dark text-white text-center ">
-    <form method="get">
-        <h5>Bienvenido {{ user.first_name |capfirst }}  a Tag Moda ✨ </h5>
-    </form>
-</span> {% endif %}
-<br>
-<div class="container">
-    <div id="carouselExampleDark" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{% static 'app/img/nike.jpg' %}" width="1100" height="500" alt="nike">
-                <div class="carousel-caption d-none d-md-block">
 
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="{% static 'app/img/adidas.jpg' %}" width="1100" height="500" alt="adidas">
-                <div class="carousel-caption d-none d-md-block">
-                    <p class="textoC">Tenemos los mejores productos a nivel Mundial</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'app/img/levis.jpg' %}" width="1100" height="500" alt="levis">
-                <div class="carousel-caption d-none d-md-block">
-                    <p class="textoC">Las mejores marcas, conócenos.</p>
+<!--  Banner  -->
+
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="{% static 'app/img/levis.png' %}" width="1100" height="500" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+                            <h1 class="h1 text-success"><b>Levis</b></h1>
+                            <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa minima error eius incidunt fuga id quas vitae molestiae obcaecati, nulla voluptate quis veniam earum nostrum at consequatur dignissimos voluptatum asperiores?
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="{% static 'app/img/adidas.png' %}" width="1100" height="500" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1 text-success"><b>Adidas</b></h1>
+                            <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, ipsum rem. Possimus obcaecati in iste. Quis eum ab sint asperiores, rem, provident illum consectetur corrupti officiis fugit molestias beatae cum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="{% static 'app/img/nike.png' %}" width="1100" height="500" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1 text-success"><b>Nike</b></h1>
+                            <h3 class="h2">Ullamco laboris nisi ut </h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi sed modi repellat, similique perferendis quaerat dolores non provident hic quos doloremque quasi quae, et delectus eaque ut velit unde.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="{% static 'app/img/vans.png' %}" width="1100" height="500" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1 text-success"><b>Vans</b></h1>
+                            <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit aperiam voluptatum cumque perspiciatis inventore exercitationem optio praesentium dignissimos rem corrupti molestiae ullam quas, tenetur omnis sit porro dicta repellat maiores.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
 </div>
-<center>
-    <div class="toast show">
-        <div class="toast-header justify-content-center">
-            Enviamos a todo Chile GRATIS!! 😍
-            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-        </div>
-        <div class="toast-body">
-            ✨Tag Moda✨
+<!--  Banner  -->
+
+
+<!-- Categoria-->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Diferentes Categorias</h1>
+
         </div>
     </div>
-</center>
-
-<div class="container">
-
-    <p class="text-center lead" id="textoHome">TENEMOS LAS ULTIMAS NOVEDADES EN LA MODA</p>
-
-    <hr>
-
-    <img src="{% static 'app/img/modelos.png' %}" class="img-fluid rounded mx-auto d-block border border-dark" id="imgModelos">
-    <h1 class="text-center lead text-decoration-none">
-        <a href="{% url 'productos' %}"><kbd>Productos</kbd></a>
-        <hr>
-
-</div>
-
-
-
-<span class="d-sm-block p-2 bg-dark text-white text-center d-none ">
-    <p class="lead">
-    <div class="box-element hidden text-center" id="payment-info">
-        <Large>Tag Moda ✨</Large>
+    <div class="row">
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="{% static 'app/img/category_img_01.jpg' %}" class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">Polerones</h5>
+            <p class="text-center"><a class="btn btn-success">Ver</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="{% static 'app/img/category_img_02.jpg' %}" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Zapatillas</h2>
+            <p class="text-center"><a class="btn btn-success">Ver</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="{% static 'app/img/category_img_03.jpg' %}" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Accesorios</h2>
+            <p class="text-center"><a class="btn btn-success">Ver</a></p>
+        </div>
     </div>
-    </p>
-</span> {% endblock %}
+</section>
+<!-- Categoria -->
+
+
+<!-- Productos destacados -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Productos Destacados </h1>
+                <p>
+                    Proximamente
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <!-- <img src=" " class="card-img-top" alt="..."> -->
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$240.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                        </p>
+                        <p class="text-muted">Reviews (24)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <!-- <img src="" class="card-img-top" alt="..."> -->
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$480.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                        <p class="card-text">
+                            Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
+                        </p>
+                        <p class="text-muted">Reviews (48)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <!-- <img src=" " class="card-img-top" alt="..."> -->
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$360.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                        <p class="card-text">
+                            Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                        </p>
+                        <p class="text-muted">Reviews (74)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Featured Product -->
+
+{% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'app/base.html' %} {% load static %} {% block content %} {% load humanize %}
 
+
 <div class="container">
     <figure class="text-center">
         <blockquote class="blockquote">
@@ -9,9 +10,9 @@
             Solo rellene los campos <cite title="seguridad">Con Confianza🔐</cite>
         </figcaption>
     </figure>
-    <hr>
+
     <div class="col-lg-50">
-        <div class="box-element" id="form-wrapper">
+        <!-- <div class="box-element" id="form-wrapper">
             <form id="form">
                 <div id="user-info">
                     <div class="form-field">
@@ -44,18 +45,16 @@
                 <hr>
                 <input id="form-button" class="btn btn-success btn-block " type="submit" value="Continue">
             </form>
-        </div>
-        <br>
+        </div> -->
+
+
+        <!-- <br>
         <div class="box-element hidden text-center" id="payment-info">
             <large>Listado de su carrito de compra 🛒</large>
-        </div>
-
-
+        </div> -->
     </div>
     <div class="card" id="a">
         <div class="col-lg-sm">
-
-            <hr>
             <h3 class="text-center">Listado de productos ✍</h3>
             <hr> {% for item in items %}
             <div class="row">
@@ -78,14 +77,70 @@
                 <div style="flex:1">
                     <p>${{item.get_total | intcomma }}</p>
                 </div>
-
             </div>
+
             <hr> {% endfor %}
             <h5 class="text-center">Productos: {{pedido.get_cart_items | intcomma }}</h5>
-            <h5 class="text-center">Total: ${{pedido.get_cart_total | intcomma }}</h5>
+            <h5 class="text-center">Precio productos: ${{pedido.get_cart_total | intcomma }}</h5>
+            <h5 class="text-center">Envío: $15</h5>
+            <br>
+
+            <h5 class="text-end">Precio Final: ${{pedido.get_precio_total | intcomma }} <img src="{% static 'app/img/starken-logo.png' %}" width="180px" height="60" alt="Logo"></h5>
+
+
 
         </div>
+
     </div>
+    <center>
+        <div class="d-grid gap-2 col-4 mx-auto">
+            <div id="paypal-button-container">
+
+            </div>
+        </div>
+    </center>
 
 </div>
-<br><br><br><br><br><br><br> {% endblock %}
+
+
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=ATmedoTUhjLzijstlRcH_GhyTMpHYXikCer5_WsVkmY6hv7KSUBRCP9eYp1draHONA6bwJPdOohNY2Ac&currency=USD&disable-funding=credit"></script>
+
+<script>
+    var total = '{{pedido.get_precio_total }}'
+        // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        style: {
+            color: 'blue',
+            shape: 'pill',
+            label: 'pay',
+            height: 40
+        },
+
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: total
+                    }
+                }]
+            });
+        },
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                window.location.href="{% url 'completo' %}"
+            });
+        },
+        onCancel: function(data) {
+            alert("Pago cancelado");
+            console.log(data);
+        }
+
+
+
+    }).render('#paypal-button-container');
+</script>
+
+{% endblock %}
