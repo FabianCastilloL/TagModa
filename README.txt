@@ -1,4 +1,4 @@
-1.	Un usuario cliente para el uso del servicio web debe visitar nuestra página web https://tagmodaonline.pythonanywhere.com
+1.	Un usuario cliente para el uso del servicio web debe visitar nuestra página web.
 2.	El usuario puede navegar dentro del servicio buscando algún producto en stock que le llame la atención, puede tener un
  contacto directo a la tienda por medio del “contáctanos” o mediante el WhatsApp que está en la página en todo momento.
 3.	Algunas de las condiciones para que el usuario haga una comprar online y agregar cosas al carrito, debe estar registrado y
@@ -31,9 +31,3 @@ Cuentas:
 	Cuenta Usuario prueba pagina:
 		VuCDcVJrHGp
 		qGFFCxHg6bh
-
-
-
-fa.castillol@duocuc.cl
-
-
